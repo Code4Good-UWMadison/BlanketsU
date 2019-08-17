@@ -6,16 +6,15 @@
 #### Donee:
 - **How many blankets do you need? Options: 1, 2, 3 or more** 
 <!-- - **What's your phone number/facebook id? Options: String input**  -->
-- **Here's someone who is willing to offer x blankets to you. Options: confirm or not**
+- **Here's someone who is willing to offer x blankets. Options: Confirm, No thanks**
 - OR
-- **There's no donor available to help you right now. We will register you in our database and you can talk to our agent for help. Options: Talk to an agent or I'm good**
+- **There are no donors available to help you right now. We will register you to our database and you can talk to one of our agents for help. Options: Talk to an agent, No thanks**
 
 #### Donor:
-
-- **How many blankets can you provide? Options: 1, 2, 3 or more** 
+- **How many blankets can you/are willing to provide? Options: 1, 2, 3 or more** 
 - **Thank you, we will send your facebook contact to an available donee soon.**
 
-#### Exception handling: if someone types something other than an option, send an agent to help him/her
+#### Exception handling: if someone types something instead of selecting one of the options presented, send one of our agents to live chat with him/her
 
 ## Database
 
