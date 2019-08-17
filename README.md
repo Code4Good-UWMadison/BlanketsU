@@ -1,10 +1,9 @@
 # Blanket You Chatbot
 
-## Conversations
-- **Hi, are a donee or donor? Options: Donor, Donee**
+## Sample Conversation
+- **Hi, are you a donee or donor? Options: Donor, Donee**
 
 #### Donee:
-
 - **How many blankets do you need? Options: 1, 2, 3 or more** 
 <!-- - **What's your phone number/facebook id? Options: String input**  -->
 - **Here's someone who is willing to offer x blankets to you. Options: confirm or not**
