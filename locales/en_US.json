@@ -14,10 +14,16 @@
   "donor":{
     "prompt": "Hi {{userFirstName}}, there are many people in need of blankets, a basic necessity. We're glad you're willing to help.",
     "question": "How many blankets would you like to donate?"
+    "one": "One",
+    "two": "Two",
+    "other": "Three or more"
   },
   "donee":{
     "prompt": "Hi {{userFirstName}}, if you're looking for warm and comfortable blankets, you've come to the right place. We're here to help!",
-    "question": "How many blankets do you need?"
+    "question": "How many blankets do you need?",
+    "one": "One",
+    "two": "Two",
+    "other": "Three or more"
   },
   "care": {
     "prompt": "To connect you with the right team please let me know what this is about?",
