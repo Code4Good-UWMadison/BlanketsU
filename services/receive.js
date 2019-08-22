@@ -1,22 +1,13 @@
-/**
- * Copyright 2019-present, Facebook, Inc. All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * Messenger For Original Coast Clothing
- * https://developers.facebook.com/docs/messenger-platform/getting-started/sample-apps/original-coast-clothing
- */
-
 "use strict";
 
-const Curation = require("./curation"),
-  Order = require("./order"),
-  Response = require("./response"),
-  Care = require("./care"),
-  Survey = require("./survey"),
+const Response = require("./response"),
+  // Curation = require("./curation"),
+  // Order = require("./order"),
+  // Care = require("./care"),
+  // Survey = require("./survey"),
   GraphAPi = require("./graph-api"),
-  i18n = require("../i18n.config");
+  i18n = require("../i18n.config"),
+  config = require("./config");
 
 module.exports = class Receive {
   constructor(user, webhookEvent) {
@@ -85,13 +76,6 @@ module.exports = class Receive {
       message.includes("start over")
     ) {
       response = Response.genNuxMessage(this.user);
-    } else if (Number(message)) {
-      response = Order.handlePayload("ORDER_NUMBER");
-    } else if (message.includes("#")) {
-      response = Survey.handlePayload("CSAT_SUGGESTION");
-    } else if (message.includes(i18n.__("care.help").toLowerCase())) {
-      let care = new Care(this.user, this.webhookEvent);
-      response = care.handlePayload("CARE_HELP");
     } else {
       response = [
         Response.genText(
@@ -101,9 +85,17 @@ module.exports = class Receive {
         ),
         Response.genText(i18n.__("get_started.guidance")),
         Response.genQuickReply(i18n.__("get_started.help"), [
+          // {
+          //   title: i18n.__("menu.suggestion"),
+          //   payload: "CURATION"
+          // },
           {
-            title: i18n.__("menu.suggestion"),
-            payload: "CURATION"
+            title: i18n.__("menu.donor"),
+            payload: "DONOR"
+          },
+          {
+            title: i18n.__("menu.donee"),
+            payload: "DONEE"
           },
           {
             title: i18n.__("menu.help"),
@@ -168,6 +160,96 @@ module.exports = class Receive {
     return this.handlePayload(payload);
   }
 
+  handleDonorPayload(payload) {
+    let response;
+    switch (payload) {
+      case "TRACK_ORDER":
+        response = Response.genQuickReply(i18n.__("order.prompt"), [
+          {
+            title: i18n.__("order.account"),
+            payload: "LINK_ORDER"
+          },
+          {
+            title: i18n.__("order.search"),
+            payload: "SEARCH_ORDER"
+          },
+          {
+            title: i18n.__("menu.help"),
+            payload: "CARE_ORDER"
+          }
+        ]);
+        break;
+
+      case "SEARCH_ORDER":
+        response = Response.genText(i18n.__("order.number"));
+        break;
+
+      case "ORDER_NUMBER":
+        response = Response.genImageTemplate(
+          `${config.appUrl}/order.png`,
+          i18n.__("order.status")
+        );
+        break;
+
+      case "LINK_ORDER":
+        response = [
+          Response.genText(i18n.__("order.dialog")),
+          Response.genText(i18n.__("order.searching")),
+          Response.genImageTemplate(
+            `${config.appUrl}/order.png`,
+            i18n.__("order.status")
+          )
+        ];
+        break;
+    }
+    return response;
+  }
+
+  handleDoneePayload(payload) {
+    let response;
+    switch (payload) {
+      case "TRACK_ORDER":
+        response = Response.genQuickReply(i18n.__("order.prompt"), [
+          {
+            title: i18n.__("order.account"),
+            payload: "LINK_ORDER"
+          },
+          {
+            title: i18n.__("order.search"),
+            payload: "SEARCH_ORDER"
+          },
+          {
+            title: i18n.__("menu.help"),
+            payload: "CARE_ORDER"
+          }
+        ]);
+        break;
+
+      case "SEARCH_ORDER":
+        response = Response.genText(i18n.__("order.number"));
+        break;
+
+      case "ORDER_NUMBER":
+        response = Response.genImageTemplate(
+          `${config.appUrl}/order.png`,
+          i18n.__("order.status")
+        );
+        break;
+
+      case "LINK_ORDER":
+        response = [
+          Response.genText(i18n.__("order.dialog")),
+          Response.genText(i18n.__("order.searching")),
+          Response.genImageTemplate(
+            `${config.appUrl}/order.png`,
+            i18n.__("order.status")
+          )
+        ];
+        break;
+    }
+    return response;
+  }
+
   handlePayload(payload) {
     console.log("Received Payload:", `${payload} for ${this.user.psid}`);
 
@@ -183,16 +265,10 @@ module.exports = class Receive {
       payload === "GITHUB"
     ) {
       response = Response.genNuxMessage(this.user);
-    } else if (payload.includes("CURATION") || payload.includes("COUPON")) {
-      let curation = new Curation(this.user, this.webhookEvent);
-      response = curation.handlePayload(payload);
-    } else if (payload.includes("CARE")) {
-      let care = new Care(this.user, this.webhookEvent);
-      response = care.handlePayload(payload);
-    } else if (payload.includes("ORDER")) {
-      response = Order.handlePayload(payload);
-    } else if (payload.includes("CSAT")) {
-      response = Survey.handlePayload(payload);
+    } else if (payload.includes("DONOR")) {
+      response = this.handleDonorPayload(payload);
+    } else if (payload.includes("DONEE")) {
+      response = this.handleDoneePayload(payload);
     } else {
       response = {
         text: `This is a default postback message for payload: ${payload}!`
