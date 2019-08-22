@@ -225,6 +225,12 @@ module.exports = class Receive {
     return response;
   }
 
+  handleNum() {
+    let response;
+    response = [Response.genText(i18n.__("donee.search"))];
+    return response;
+  }
+
   handlePayload(payload) {
     console.log("Received Payload:", `${payload} for ${this.user.psid}`);
 
@@ -246,16 +252,22 @@ module.exports = class Receive {
       response = this.handleDoneePayload();
     } else if (payload.includes("DONATE_ONE")) {
       this.recordDonor("one");
+      response = this.handleNum();
     } else if (payload.includes("DONATE_TWO")) {
       this.recordDonor("two");
+      response = this.handleNum();
     } else if (payload.includes("DONATE_MORE")) {
       this.recordDonor("more");
+      response = this.handleNum();
     } else if (payload.includes("NEED_ONE")) {
       this.recordDonee("one");
+      response = this.handleNum();
     } else if (payload.includes("NEED_TWO")) {
       this.recordDonee("two");
+      response = this.handleNum();
     } else if (payload.includes("NEED_MORE")) {
       this.recordDonee("more");
+      response = this.handleNum();
     } else {
       response = {
         text: `This is a default postback message for payload: ${payload}!`
