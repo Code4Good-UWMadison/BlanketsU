@@ -278,14 +278,14 @@ module.exports = class Receive {
 
   async recordDonor(number, id) {
     var link = await GraphAPi.getUserProfile(id);
-    console.log("weird?", id, " : ", link.link);
+    console.log("weird?", id, " : ", link);
     mongodb.MongoClient.connect(uri, function(err, client) {
       if (err) throw err;
       let db = client.db("heroku_pxzvn9n3");
       let donors = db.collection("donors");
       // let donees = db.collection("donees");
       let data = {
-        userLink: link.link,
+        userLink: link,
         number: number,
         matched: false
       };
