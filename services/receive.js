@@ -291,14 +291,6 @@ module.exports = class Receive {
       donors.insertOne(data, function(err) {
         if (err) throw err;
         console.log("success?");
-        donors.drop(function(err) {
-          if (err) throw err;
-
-          // Only close the connection when your app is terminating.
-          client.close(function(err) {
-            if (err) throw err;
-          });
-        });
       });
     });
   }
