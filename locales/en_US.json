@@ -1,6 +1,6 @@
 {
   "profile": {
-    "greeting": "Welcome to Original Coast {{user_first_name}}! Click get started to enjoy our sample automated messaging experience. If you want to build a similar one visit https://fb.me/get-sample-oc"
+    "greeting": "Welcome to Original Coast Clothing {{user_first_name}}! Click get started to enjoy our sample automated messaging experience. If you want to build a similar one visit https://fb.me/get-sample-oc"
   },
   "menu": {
     "support": "Customer Support",
@@ -8,22 +8,54 @@
     "help": "Talk to an agent",
     "suggestion": "Outfit suggestions",
     "shop": "Shop now",
-    "start_over": "Start over",
-    "donor": "Donor",
-    "donee": "Donee"
+    "start_over": "Start over"
   },
   "get_started": {
-    "welcome": "Hi {{userFirstName}}! Welcome to Blanket U where you can donate or request blankets.",
+    "welcome": "Hi {{userFirstName}}! Welcome to Original Coast Clothing where you'll find styles for every occasion.",
     "guidance": "At any time, use the menu below to navigate through the features",
     "help": "What we can do to help you today?"
   },
-  "donor": {
-    "prompt": "Hi {{userFirstName}}, there are many people in need of blankets, a basic necessity. We're glad you're willing to help.",
-    "question": "How many blankets would you like to donate?"
+  "leadgen": {
+    "promo": "Hi {{userFirstName}}, finding great outfits is now easier and more convenient.",
+    "title": "50% Coupon",
+    "subtitle": "Here is your coupon",
+    "apply": "Apply discount",
+    "coupon": "Added your coupon to this thread, you can now check out the discounted summer collection"
   },
-  "donee": {
-    "prompt": "Hi {{userFirstName}}, if you're looking for warm and comfortable blankets, you've come to the right place. We're here to help!",
-    "question": "How many blankets do you need?"
+  "curation": {
+    "prompt": "Are you looking for an outfit for yourself or someone else?",
+    "occasion": "Great! Let's get started. First, is there an occasion in mind?",
+    "price": "How much are you looking to spend?",
+    "me": "For me!",
+    "someone": "Someone else",
+    "work": "Work",
+    "dinner": "Dinner",
+    "party": "Party",
+    "sales": "Talk to sales",
+    "shop": "Shop this look",
+    "title": "Summer collection 2019",
+    "subtitle": "Featured outfit",
+    "show": "Another look"
+  },
+  "order": {
+    "prompt": "We'll be happy to help you. Select from the following",
+    "search": "Search by order number",
+    "account": "Link my Account",
+    "dialog": "Account linking dialog",
+    "searching": "Searching for your last order...",
+    "number": "Sure, please write the order number",
+    "status": "Your order is on it’s way, expect to have it in 3 days."
+  },
+  "care": {
+    "prompt": "To connect you with the right team please let me know what this is about?",
+    "order": "Order Inquiries",
+    "billing": "Billing Issues",
+    "other": "Other",
+    "issue": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you with any questions you might have about your {{topic}}.",
+    "default": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you today. How can I help you?",
+    "style": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I’m here to answer questions you might have on our summer styles",
+    "end": "This is as far as the demo goes. Leverage the power of the messenger platform for your business. See https://fb.me/get-sample-oc to learn how to build a similar experience",
+    "help": "Help"
   },
   "survey": {
     "prompt": "Hi, want to get quick feedback on your recent experience with {{agentFirstName}}",
