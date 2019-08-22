@@ -12,8 +12,7 @@ const Response = require("./response"),
   locales = i18n.getLocales();
 // config = require("./config");
 
-let uri =
-  "mongodb://heroku_pxzvn9n3:gub4hnsnbdantjd9c2rkq8foj2@ds163517.mlab.com:63517/heroku_pxzvn9n3";
+let uri = process.env.MONGOLAB_URI;
 
 module.exports = class Receive {
   constructor(user, webhookEvent) {
@@ -280,7 +279,7 @@ module.exports = class Receive {
   recordDonor(number) {
     mongodb.MongoClient.connect(uri, function(err, client) {
       if (err) throw err;
-      let db = client.db("dbname");
+      let db = client.db("heroku_pxzvn9n3");
       let donors = db.collection("donors");
       // let donees = db.collection("donees");
       let data = {
@@ -288,7 +287,7 @@ module.exports = class Receive {
         number: number,
         matched: false
       };
-      donors.insert(data, function(err) {
+      donors.insertOne(data, function(err) {
         if (err) throw err;
         console.log("success?");
         donors.drop(function(err) {
