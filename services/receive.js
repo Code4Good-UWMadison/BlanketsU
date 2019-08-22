@@ -165,23 +165,35 @@ module.exports = class Receive {
     console.log("inside Donor: ");
     console.log(payload);
     let response;
-    response = [
-      Response.genText(i18n.__("donor.prompt")),
-      Response.genQuickReply(i18n.__("donor.question"), [
-        {
-          title: i18n.__("order.account"),
-          payload: "LINK_ORDER"
-        },
-        {
-          title: i18n.__("order.search"),
-          payload: "SEARCH_ORDER"
-        },
-        {
-          title: i18n.__("menu.help"),
-          payload: "CARE_ORDER"
-        }
-      ])
-    ];
+    switch (payload) {
+      case "DONATE_ONE":
+        console.log("add one to db");
+        break;
+      case "DONATE_TWO":
+        console.log("add two to db");
+        break;
+      case "DONATE_MORE":
+        console.log("add more to db");
+        break;
+      default:
+        response = [
+          Response.genText(i18n.__("donor.prompt")),
+          Response.genQuickReply(i18n.__("donor.question"), [
+            {
+              title: i18n.__("donor.one"),
+              payload: "DONATE_ONE"
+            },
+            {
+              title: i18n.__("donor.two"),
+              payload: "DONATE_TWO"
+            },
+            {
+              title: i18n.__("donor.other"),
+              payload: "DONATE_MORE"
+            }
+          ])
+        ];
+    }
     return response;
   }
 
@@ -189,23 +201,35 @@ module.exports = class Receive {
     console.log("inside Donee: ");
     console.log(payload);
     let response;
-    response = [
-      Response.genText(i18n.__("donee.prompt")),
-      Response.genQuickReply(i18n.__("donee.question"), [
-        {
-          title: i18n.__("order.account"),
-          payload: "LINK_ORDER"
-        },
-        {
-          title: i18n.__("order.search"),
-          payload: "SEARCH_ORDER"
-        },
-        {
-          title: i18n.__("menu.help"),
-          payload: "CARE_ORDER"
-        }
-      ])
-    ];
+    switch (payload) {
+      case "NEED_ONE":
+        console.log("add one to db");
+        break;
+      case "NEED_TWO":
+        console.log("add two to db");
+        break;
+      case "NEED_MORE":
+        console.log("add more to db");
+        break;
+      default:
+        response = [
+          Response.genText(i18n.__("donee.prompt")),
+          Response.genQuickReply(i18n.__("donee.question"), [
+            {
+              title: i18n.__("donee.one"),
+              payload: "NEED_ONE"
+            },
+            {
+              title: i18n.__("donee.two"),
+              payload: "NEED_TWO"
+            },
+            {
+              title: i18n.__("donee.other"),
+              payload: "NEED_MORE"
+            }
+          ])
+        ];
+    }
     return response;
   }
 
