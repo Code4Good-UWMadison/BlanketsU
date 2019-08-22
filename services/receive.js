@@ -161,6 +161,8 @@ module.exports = class Receive {
   }
 
   handleDonorPayload(payload) {
+    console.log("inside Donor: ");
+    console.log(payload);
     let response;
     switch (payload) {
       case "TRACK_ORDER":
@@ -206,6 +208,8 @@ module.exports = class Receive {
   }
 
   handleDoneePayload(payload) {
+    console.log("inside Donee: ");
+    console.log(payload);
     let response;
     switch (payload) {
       case "TRACK_ORDER":
