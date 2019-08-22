@@ -9,17 +9,17 @@
   "get_started": {
     "welcome": "Hi {{userFirstName}}! Welcome to Blanket U where you can donate or request blankets.",
     "guidance": "At any time, use the menu below to navigate through the features",
-    "help": "Would you like to donate or request blankets?
+    "help": "Would you like to donate or request blankets?"
   },
   "donor":{
     "prompt": "Hi {{userFirstName}}, there are many people in need of blankets, a basic necessity. We're glad you're willing to help.",
-    "question": "How many blankets would you like to donate?"
+    "question": "How many blankets would you like to donate?",
     "one": "One",
     "two": "Two",
-    "other": "Three or more"
+    "other": "Three or more",
     "search": "Thank you for your generosity. We are searching for potential donees to match your offer.",
-    "fail": "Unfortunately, we are unable to find a matching donee."
-    "success": "Congrats! We have found a matching donee."
+    "fail": "Unfortunately, we are unable to find a matching donee.",
+    "success" : "Congrats! We have found a matching donee.",
     "confirmation": "Would you like to confirm a transaction with your matching donee?",
     "accept": "Yes, that would be great.",
     "reject": "Not now."
