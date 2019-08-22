@@ -250,13 +250,13 @@ module.exports = class Receive {
     } else if (payload.includes("DONEE")) {
       response = this.handleDoneePayload();
     } else if (payload.includes("DONATE_ONE")) {
-      this.recordDonor("one");
+      this.recordDonor("one", this.user.psid);
       response = this.handleNum();
     } else if (payload.includes("DONATE_TWO")) {
-      this.recordDonor("two");
+      this.recordDonor("two", this.user.psid);
       response = this.handleNum();
     } else if (payload.includes("DONATE_MORE")) {
-      this.recordDonor("more");
+      this.recordDonor("more", this.user.psid);
       response = this.handleNum();
     } else if (payload.includes("NEED_ONE")) {
       this.recordDonee("one");
@@ -276,14 +276,15 @@ module.exports = class Receive {
     return response;
   }
 
-  recordDonor(number) {
+  recordDonor(number, id) {
+    console.log("weird?", id);
     mongodb.MongoClient.connect(uri, function(err, client) {
       if (err) throw err;
       let db = client.db("heroku_pxzvn9n3");
       let donors = db.collection("donors");
       // let donees = db.collection("donees");
       let data = {
-        userLink: GraphAPi.getUserProfile(this.user.psid),
+        userLink: GraphAPi.getUserProfile(id),
         number: number,
         matched: false
       };
