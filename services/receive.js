@@ -277,7 +277,7 @@ module.exports = class Receive {
   }
 
   recordDonor(number, id) {
-    console.log("weird?", id);
+    console.log("weird?", id, " : ", GraphAPi.getUserProfile(id));
     mongodb.MongoClient.connect(uri, function(err, client) {
       if (err) throw err;
       let db = client.db("heroku_pxzvn9n3");
