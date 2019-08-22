@@ -17,24 +17,25 @@
     "one": "One",
     "two": "Two",
     "other": "Three or more"
+    "search": "Thank you for your generosity. We are searching for potential donees to match your offer.",
+    "fail": "Unfortunately, we are unable to find a matching donee."
+    "success": "Congrats! We have found a matching donee."
+    "confirmation": "Would you like to confirm a transaction with your matching donee?",
+    "accept": "Yes, that would be great.",
+    "reject": "Not now."
   },
   "donee":{
     "prompt": "Hi {{userFirstName}}, if you're looking for warm and comfortable blankets, you've come to the right place. We're here to help!",
     "question": "How many blankets do you need?",
     "one": "One",
     "two": "Two",
-    "other": "Three or more"
-  },
-  "care": {
-    "prompt": "To connect you with the right team please let me know what this is about?",
-    "order": "Order Inquiries",
-    "billing": "Billing Issues",
-    "other": "Other",
-    "issue": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you with any questions you might have about your {{topic}}.",
-    "default": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I'm here to assist you today. How can I help you?",
-    "style": "Hi {{userFirstName}}, my name is {{agentFirstName}}, I’m here to answer questions you might have on our summer styles",
-    "end": "This is as far as the demo goes. Leverage the power of the messenger platform for your business. See https://fb.me/get-sample-oc to learn how to build a similar experience",
-    "help": "Help"
+    "other": "Three or more",
+    "search": "Great! We are searching for a potential donor to match your request.",
+    "fail": "Unfortunately, we are unable to find a matching donor.",
+    "success": "Congrats! We have found a matching donor!",
+    "confirmation": "Would you like to confirm a transaction with your matching donor?",
+    "accept": "Yes please!",
+    "reject": "Not now."
   },
   "survey": {
     "prompt": "Hi, want to get quick feedback on your recent experience with {{agentFirstName}}",
