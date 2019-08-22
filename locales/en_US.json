@@ -17,13 +17,25 @@
     "one": "One",
     "two": "Two",
     "other": "Three or more"
+    "search": "Thank you for your generosity. We are searching for potential donees to match your offer.",
+    "fail": "Unfortunately, we are unable to find a matching donee."
+    "success": "Congrats! We have found a matching donee."
+    "confirmation": "Would you like to confirm a transaction with your matching donee?",
+    "accept": "Yes, that would be great.",
+    "reject": "Not now."
   },
   "donee": {
     "prompt": "Hi {{user_first_name}}, if you're looking for warm and comfortable blankets, you've come to the right place. We're here to help!",
     "question": "How many blankets do you need?",
     "one": "One",
     "two": "Two",
-    "other": "Three or more"
+    "other": "Three or more",
+    "search": "Great! We are searching for a potential donor to match your request.",
+    "fail": "Unfortunately, we are unable to find a matching donor.",
+    "success": "Congrats! We have found a matching donor!",
+    "confirmation": "Would you like to confirm a transaction with your matching donor?",
+    "accept": "Yes please!",
+    "reject": "Not now."
   },
   "fallback": {
     "any": "Sorry, but I don’t recognize \"{{message}}\".",
