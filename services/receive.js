@@ -283,7 +283,7 @@ module.exports = class Receive {
       let donors = db.collection("donors");
       // let donees = db.collection("donees");
       let data = {
-        userLink: GraphAPi.getUserProfile(),
+        userLink: GraphAPi.getUserProfile(this.user.psid),
         number: number,
         matched: false
       };
