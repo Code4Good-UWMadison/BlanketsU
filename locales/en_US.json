@@ -16,10 +16,10 @@
     "question": "How many blankets would you like to donate?",
     "one": "One",
     "two": "Two",
-    "other": "Three or more"
+    "other": "Three or more",
     "search": "Thank you for your generosity. We are searching for potential donees to match your offer.",
-    "fail": "Unfortunately, we are unable to find a matching donee."
-    "success": "Congrats! We have found a matching donee."
+    "fail": "Unfortunately, we are unable to find a matching donee.",
+    "success": "Congrats! We have found a matching donee.",
     "confirmation": "Would you like to confirm a transaction with your matching donee?",
     "accept": "Yes, that would be great.",
     "reject": "Not now."
