@@ -8,9 +8,7 @@
     "help": "Talk to an agent",
     "suggestion": "Outfit suggestions",
     "shop": "Shop now",
-    "start_over": "Start over",
-    "donor": "Donor"
-    "donee": "Donee"
+    "start_over": "Start over"
   },
   "get_started": {
     "welcome": "Hi {{userFirstName}}! Welcome to Blanket U where you can donate or request blankets.",
