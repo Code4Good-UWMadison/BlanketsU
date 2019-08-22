@@ -2,7 +2,8 @@
   "menu": {
     "donor": "Donate",
     "donee": "Receive",
-    "help": "Talk to an agnet"
+    "help": "Talk to an agnet",
+    "start_over": "Start over"
   },
   "get_started": {
     "welcome": "Hi {{user_first_name}}! Welcome to Blanket U where you can donate or request blankets.",

@@ -244,18 +244,18 @@ module.exports = class Receive {
       response = this.handleDonorPayload();
     } else if (payload.includes("DONEE")) {
       response = this.handleDoneePayload();
-      // } else if (payload.includes("DONATE_ONE")) {
-      //   this.recordDonor("one");
-      // } else if (payload.includes("DONATE_TWO")) {
-      //   this.recordDonor("two");
-      // } else if (payload.includes("DONATE_MORE")) {
-      //   this.recordDonor("more");
-      // } else if (payload.includes("NEED_ONE")) {
-      //   this.recordDonee("one");
-      // } else if (payload.includes("NEED_TWO")) {
-      //   this.recordDonee("two");
-      // } else if (payload.includes("NEED_MORE")) {
-      //   this.recordDonee("more");
+    } else if (payload.includes("DONATE_ONE")) {
+      this.recordDonor("one");
+    } else if (payload.includes("DONATE_TWO")) {
+      this.recordDonor("two");
+    } else if (payload.includes("DONATE_MORE")) {
+      this.recordDonor("more");
+    } else if (payload.includes("NEED_ONE")) {
+      this.recordDonee("one");
+    } else if (payload.includes("NEED_TWO")) {
+      this.recordDonee("two");
+    } else if (payload.includes("NEED_MORE")) {
+      this.recordDonee("more");
     } else {
       response = {
         text: `This is a default postback message for payload: ${payload}!`
@@ -270,6 +270,24 @@ module.exports = class Receive {
       if (err) throw err;
       let db = client.db("dbname");
       let donors = db.collection("donors");
+      // let donees = db.collection("donees");
+      let data = {
+        userLink: GraphAPi.getUserProfile(),
+        number: number,
+        matched: false
+      };
+      donors.insert(data, function(err) {
+        if (err) throw err;
+        console.log("success?");
+        donors.drop(function(err) {
+          if (err) throw err;
+
+          // Only close the connection when your app is terminating.
+          client.close(function(err) {
+            if (err) throw err;
+          });
+        });
+      });
     });
   }
 
