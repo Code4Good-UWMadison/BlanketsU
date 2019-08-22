@@ -6,8 +6,14 @@ const Response = require("./response"),
   // Care = require("./care"),
   // Survey = require("./survey"),
   GraphAPi = require("./graph-api"),
-  i18n = require("../i18n.config");
+  i18n = require("../i18n.config"),
+  mongodb = require("mongodb"),
+  config = require("./config"),
+  locales = i18n.getLocales();
 // config = require("./config");
+
+let uri =
+  "mongodb://heroku_pxzvn9n3:gub4hnsnbdantjd9c2rkq8foj2@ds163517.mlab.com:63517/heroku_pxzvn9n3";
 
 module.exports = class Receive {
   constructor(user, webhookEvent) {
@@ -77,13 +83,18 @@ module.exports = class Receive {
     ) {
       response = Response.genNuxMessage(this.user);
     } else {
+      console.log("???", `${this.user.firstName}`);
       response = [
         Response.genText(
           i18n.__("fallback.any", {
             message: this.webhookEvent.message.text
           })
         ),
-        Response.genText(i18n.__("get_started.welcome")),
+        Response.genText(
+          i18n.__("get_started.welcome", {
+            user_first_name: this.user.firstName
+          })
+        ),
         Response.genText(i18n.__("get_started.guidance")),
         Response.genQuickReply(i18n.__("get_started.help"), [
           // {
@@ -161,75 +172,56 @@ module.exports = class Receive {
     return this.handlePayload(payload);
   }
 
-  handleDonorPayload(payload) {
-    console.log("inside Donor: ");
-    console.log(payload);
+  handleDonorPayload() {
     let response;
-    switch (payload) {
-      case "DONATE_ONE":
-        console.log("add one to db");
-        break;
-      case "DONATE_TWO":
-        console.log("add two to db");
-        break;
-      case "DONATE_MORE":
-        console.log("add more to db");
-        break;
-      default:
-        response = [
-          Response.genText(i18n.__("donor.prompt")),
-          Response.genQuickReply(i18n.__("donor.question"), [
-            {
-              title: i18n.__("donor.one"),
-              payload: "DONATE_ONE"
-            },
-            {
-              title: i18n.__("donor.two"),
-              payload: "DONATE_TWO"
-            },
-            {
-              title: i18n.__("donor.other"),
-              payload: "DONATE_MORE"
-            }
-          ])
-        ];
-    }
+    response = [
+      Response.genText(
+        i18n.__("donor.prompt", {
+          user_first_name: "{{user_first_name}}"
+        })
+      ),
+      Response.genQuickReply(i18n.__("donor.question"), [
+        {
+          title: i18n.__("donor.one"),
+          payload: "DONATE_ONE"
+        },
+        {
+          title: i18n.__("donor.two"),
+          payload: "DONATE_TWO"
+        },
+        {
+          title: i18n.__("donor.other"),
+          payload: "DONATE_MORE"
+        }
+      ])
+    ];
     return response;
   }
 
-  handleDoneePayload(payload) {
-    console.log("inside Donee: ");
-    console.log(payload);
+  handleDoneePayload() {
     let response;
-    switch (payload) {
-      case "NEED_ONE":
-        console.log("add one to db");
-        break;
-      case "NEED_TWO":
-        console.log("add two to db");
-        break;
-      case "NEED_MORE":
-        console.log("add more to db");
-        break;
-      default:
-        response = [
-          Response.genText(i18n.__("donee.prompt")),
-          Response.genQuickReply(i18n.__("donee.question"), [
-            {
-              title: i18n.__("donee.one"),
-              payload: "NEED_ONE"
-            },
-            {
-              title: i18n.__("donee.two"),
-              payload: "NEED_TWO"
-            },
-            {
-              title: i18n.__("donee.other"),
-              payload: "NEED_MORE"
-            }
-          ])
-        ];
-    }
+    response = [
+      Response.genText(
+        i18n.__("donee.prompt", {
+          user_first_name: "{{user_first_name}}"
+        })
+      ),
+      Response.genQuickReply(i18n.__("donee.question"), [
+        {
+          title: i18n.__("donee.one"),
+          payload: "NEED_ONE"
+        },
+        {
+          title: i18n.__("donee.two"),
+          payload: "NEED_TWO"
+        },
+        {
+          title: i18n.__("donee.other"),
+          payload: "NEED_MORE"
+        }
+      ])
+    ];
+
     return response;
   }
 
@@ -249,9 +241,21 @@ module.exports = class Receive {
     ) {
       response = Response.genNuxMessage(this.user);
     } else if (payload.includes("DONOR")) {
-      response = this.handleDonorPayload(payload);
+      response = this.handleDonorPayload();
     } else if (payload.includes("DONEE")) {
-      response = this.handleDoneePayload(payload);
+      response = this.handleDoneePayload();
+      // } else if (payload.includes("DONATE_ONE")) {
+      //   this.recordDonor("one");
+      // } else if (payload.includes("DONATE_TWO")) {
+      //   this.recordDonor("two");
+      // } else if (payload.includes("DONATE_MORE")) {
+      //   this.recordDonor("more");
+      // } else if (payload.includes("NEED_ONE")) {
+      //   this.recordDonee("one");
+      // } else if (payload.includes("NEED_TWO")) {
+      //   this.recordDonee("two");
+      // } else if (payload.includes("NEED_MORE")) {
+      //   this.recordDonee("more");
     } else {
       response = {
         text: `This is a default postback message for payload: ${payload}!`
@@ -259,6 +263,22 @@ module.exports = class Receive {
     }
 
     return response;
+  }
+
+  recordDonor(number) {
+    mongodb.MongoClient.connect(uri, function(err, client) {
+      if (err) throw err;
+      let db = client.db("dbname");
+      let donors = db.collection("donors");
+    });
+  }
+
+  recordDonee(number) {
+    mongodb.MongoClient.connect(uri, function(err, client) {
+      if (err) throw err;
+      let db = client.db("dbname");
+      let donees = db.collection("donees");
+    });
   }
 
   sendMessage(response, delay = 0) {

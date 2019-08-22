@@ -36,7 +36,8 @@ let seedData = [
 
 // Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
 
-let uri = "mongodb://heroku_pxzvn9n3:gub4hnsnbdantjd9c2rkq8foj2@ds163517.mlab.com:63517/heroku_pxzvn9n3";
+let uri =
+  "mongodb://heroku_pxzvn9n3:gub4hnsnbdantjd9c2rkq8foj2@ds163517.mlab.com:63517/heroku_pxzvn9n3";
 
 mongodb.MongoClient.connect(uri, function(err, client) {
   if (err) throw err;
