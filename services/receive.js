@@ -6,8 +6,8 @@ const Response = require("./response"),
   // Care = require("./care"),
   // Survey = require("./survey"),
   GraphAPi = require("./graph-api"),
-  i18n = require("../i18n.config"),
-  config = require("./config");
+  i18n = require("../i18n.config");
+// config = require("./config");
 
 module.exports = class Receive {
   constructor(user, webhookEvent) {
@@ -83,6 +83,7 @@ module.exports = class Receive {
             message: this.webhookEvent.message.text
           })
         ),
+        Response.genText(i18n.__("get_started.welcome")),
         Response.genText(i18n.__("get_started.guidance")),
         Response.genQuickReply(i18n.__("get_started.help"), [
           // {
